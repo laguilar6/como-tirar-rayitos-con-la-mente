@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/deployment-GitHub%20Pages-brightgreen.svg)](https://pages.github.com/)
 
-Este repositorio contiene una máquina de escritura y un dispositivo psicofísico online basado en la obra homónima de la artista **Romina Casile**. 
+Este repositorio contiene una máquina de escritura y un dispositivo psicofísico online basado en la obra homónima de la artista [**Romina Casile**](https://www.rominacasile.com/Inicio). 
 
 Siguiendo los lineamientos de Kenneth Goldsmith en *Escritura no-creativa: gestionando el lenguaje en la era digital*, gestionamos y desplazamos el texto original de Casile y compañía hacia un entorno de código abierto, transformando sus preguntas e instrucciones en un programa web ejecutable de libre acceso. Todo (o casi) el texto y las lógicas presentadas pertenecen a la documentación original de Casile y lxs participantes de su rizoma infinito eléctrico.
 
@@ -68,4 +68,18 @@ mascar y lanzar
 mascar y lanzar
 fiu ----
 fiu--------------------
+```
 
+### 5. Despliegue en entorno de producción (Interfaz Online)
+Para ejecutar la aplicación de forma interactiva y simular las lógicas del rizoma eléctrico tanto en entornos de escritorio como en dispositivos móviles, acceda a la siguiente URL:
+--> https://tu-usuario.github.io/tu-repositorio/
+
+> [!WARNING]  
+> ATENCIÓN: ENFOCAR LA MENTE HACIA UN SOLO PUNTO ES DE SUMA IMPORTANCIA.
+
+## Depuración y Errores Conocidos (Interferencias)
+Para garantizar que el rayito pueda viajar libremente, sin interferencias ni desvíos, el entorno de ejecución debe estar libre de elementos aislantes:
+
+* Se recomienda retirar las tiritas de caucho en los autos.
+* Evitar utilizar trajes de caucho o alfombras voladoras de caucho.
+* **¡Hay que abolir el caucho!**
