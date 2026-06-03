@@ -72,7 +72,7 @@ fiu--------------------
 
 ### 5. Despliegue en entorno de producción (Interfaz Online)
 Para ejecutar la aplicación de forma interactiva y simular las lógicas del rizoma eléctrico tanto en entornos de escritorio como en dispositivos móviles, acceda a la siguiente URL:
---> https://tu-usuario.github.io/tu-repositorio/
+--> [MÁQUINA DE RAYITOS](https://laguilar6.github.io/como-tirar-rayitos-con-la-mente/)
 
 > [!WARNING]  
 > ATENCIÓN: ENFOCAR LA MENTE HACIA UN SOLO PUNTO ES DE SUMA IMPORTANCIA.
