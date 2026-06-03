@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>¿cómo tirar rayitos con la mente?</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+        #terminal {
+            width: 100%;
+            max-width: 600px;
+            border: 2px solid #000000;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        h1 {
+            font-size: 1.3rem;
+            text-align: center;
+            text-transform: uppercase;
+            border-bottom: 2px dashed #000000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .menu-recetas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 480px) {
+            .menu-recetas {
+                grid-template-columns: 1fr;
+            }
+        }
+        .btn-receta {
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            color: #000000;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: left;
+        }
+        .btn-receta.activo {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        #pantalla-juego {
+            border-top: 2px dashed #000000;
+            padding-top: 20px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .instruccion-texto {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            min-height: 50px;
+        }
+        .area-interaccion {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .btn-accion {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            color: #000000;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            padding: 15px;
+            width: 100%;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            touch-action: manipulation;
+        }
+        .btn-accion:active {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .btn-accion:disabled {
+            border-color: #cccccc;
+            color: #cccccc;
+            cursor: not-allowed;
+            background-color: #ffffff;
+        }
+        .contenedor-barra {
+            width: 100%;
+            border: 1px solid #000000;
+            height: 14px;
+            margin-top: 15px;
+            background-color: #ffffff;
+            position: relative;
+        }
+        #barra-progreso {
+            width: 0%;
+            height: 100%;
+            background-color: #000000;
+            transition: width 0.1s ease;
+        }
+        #log-sistema {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            min-height: 40px;
+            text-align: center;
+            border-top: 1px dashed #000000;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="terminal">
+    <h1>MÁQUINA DE RAYITOS V1.0</h1>
+    
+    <div class="menu-recetas">
+        <button class="btn-receta activo" onclick="cambiarReceta(0)">[01] EMISIÓN GENERAL</button>
+        <button class="btn-receta" onclick="cambiarReceta(1)">[02] DIRECCIONAR</button>
+        <button class="btn-receta" onclick="cambiarReceta(2)">[03] LENGUAJE "L"</button>
+        <button class="btn-receta" onclick="cambiarReceta(3)">[04] BAZUKA RÁPIDA</button>
+    </div>
+
+    <div id="pantalla-juego">
+        <div class="instruccion-texto" id="texto-instruccion"></div>
+        
+        <div class="area-interaccion">
+            <button class="btn-accion" id="btn-ejecutar"></button>
+            <div class="contenedor-barra" id="wrapper-barra">
+                <div id="barra-progreso"></div>
+            </div>
+        </div>
+
+        <div id="log-sistema"></div>
+    </div>
+</div>
+
+<script>
+    const recetas = [
+        {
+            instruccion: "Sacuda las orejas fuertemente. Retenga la electricidad. Sostenga, espere el momento. Baje su cabeza. Intente mirar el horizonte con sus ojos, Coloquelos arriba en su parte blanca.",
+            accion: "Cargar Energía",
+            tipo: "progreso"
+        },
+        {
+            instruccion: "Acomode sus ojos lo más cerca posible uno del otro. Póngase bizco. Cuidado con el viento y con el estomudo. Intencione. Use su nariz y sus orejas. Expongase. No tenga miedo. No disimule.",
+            accion: "Emitir y Lanzar",
+            tipo: "click"
+        },
+        {
+            instruccion: "Protocolo de comunicación electromagnética: Pronuncie de manera exagerada la letra L. Hable alto.",
+            accion: "Hablar con un Rayito",
+            tipo: "input"
+        },
+        {
+            instruccion: "MODO RÁPIDO: ENFOCAR LA MENTE HACIA UN SOLO PUNTO ES DE SUMA IMPORTANCIA.",
+            accion: "Mascar y Lanzar",
+            tipo: "bazuka"
+        }
+    ];
+
+    let recetaActual = 0;
+    let datos = { progreso: 0, clicsBazuka: 0 };
+    const palabrasRizoma = ["conexión", "enchufe", "vínculo", "ensamble", "nexo", "acoplamiento", "electricidad", "enganche"];
+
+    const txtInstruccion = document.getElementById('texto-instruccion');
+    const btnEjecutar = document.getElementById('btn-ejecutar');
+    const barraProgreso = document.getElementById('barra-progreso');
+    const wrapperBarra = document.getElementById('wrapper-barra');
+    const logSistema = document.getElementById('log-sistema');
+
+    function cambiarReceta(index) {
+        recetaActual = index;
+        document.querySelectorAll('.btn-receta').forEach((btn, i) => {
+            btn.classList.toggle('activo', i === index);
+        });
+        resetearEstado();
+        actualizarInterfaz();
+    }
+
+    function resetearEstado() {
+        datos.progreso = 0;
+        datos.clicsBazuka = 0;
+        barraProgreso.style.width = '0%';
+        logSistema.innerText = 'Sistema listo.';
+        btnEjecutar.disabled = false;
+    }
+
+    function actualizarInterfaz() {
+        const r = recetas[recetaActual];
+        txtInstruccion.innerText = r.instruccion;
+        btnEjecutar.innerText = r.accion;
+
+        if (r.tipo === 'progreso' || r.tipo === 'bazuka') {
+            wrapperBarra.style.display = 'block';
+        } else {
+            wrapperBarra.style.display = 'none';
+        }
+    }
+
+    btnEjecutar.addEventListener('click', () => {
+        const r = recetas[recetaActual];
+        let pAleatoria = palabrasRizoma[Math.floor(Math.random() * palabrasRizoma.length)];
+
+        if (r.tipo === 'progreso') {
+            if (datos.progreso < 100) {
+                datos.progreso += 20;
+                barraProgreso.style.width = datos.progreso + '%';
+                logSistema.innerText = `... ${pAleatoria} ...`;
+                if (datos.progreso === 100) {
+                    btnEjecutar.innerText = "¡APUNTE Y FUEGO!";
+                }
+            } else {
+                logSistema.innerText = "Rayito impulsado. Viajando a través del tiempo y espacio. ***Ningún rayito impacta en el mismo lugar que otro rayito.";
+                finalizarAccion();
+            }
+        } 
+        else if (r.tipo === 'click') {
+            logSistema.innerText = "Emitiendo... Con la práctica se sabrá convertir en un lanzador oficial de rayitos.";
+            finalizarAccion();
+        } 
+        else if (r.tipo === 'input') {
+            logSistema.innerText = "LLLLLLLLLL... Transmisión de voz alta enviada al canal mental.";
+            finalizarAccion();
+        } 
+        else if (r.tipo === 'bazuka') {
+            datos.clicsBazuka++;
+            if (datos.clicsBazuka <= 5) {
+                barraProgreso.style.width = (datos.clicsBazuka * 20) + '%';
+                logSistema.innerText = "mascar y lanzar";
+                if (datos.clicsBazuka === 5) {
+                    logSistema.innerText = "fiu ---- fiu--------------------";
+                    finalizarAccion();
+                }
+            }
+        }
+    });
+
+    function finalizarAccion() {
+        btnEjecutar.disabled = true;
+        setTimeout(() => {
+            resetearEstado();
+            actualizarInterfaz();
+        }, 4000);
+    }
+
+    // Inicialización inicial
+    actualizarInterfaz();
+</script>
+
+</body>
+</html>
