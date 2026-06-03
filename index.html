@@ -36,18 +36,18 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        .menu-recetas {
+        .menu-modulos {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 20px;
         }
         @media (max-width: 480px) {
-            .menu-recetas {
+            .menu-modulos {
                 grid-template-columns: 1fr;
             }
         }
-        .btn-receta {
+        .btn-modulo {
             background-color: #ffffff;
             border: 1px solid #000000;
             color: #000000;
@@ -57,11 +57,11 @@
             cursor: pointer;
             text-align: left;
         }
-        .btn-receta.activo {
+        .btn-modulo.activo {
             background-color: #000000;
             color: #ffffff;
         }
-        #pantalla-juego {
+        #pantalla-interfaz {
             border-top: 2px dashed #000000;
             padding-top: 20px;
             min-height: 220px;
@@ -132,14 +132,14 @@
 <div id="terminal">
     <h1>MÁQUINA DE RAYITOS V1.0</h1>
     
-    <div class="menu-recetas">
-        <button class="btn-receta activo" onclick="cambiarReceta(0)">[01] EMISIÓN GENERAL</button>
-        <button class="btn-receta" onclick="cambiarReceta(1)">[02] DIRECCIONAR</button>
-        <button class="btn-receta" onclick="cambiarReceta(2)">[03] LENGUAJE "L"</button>
-        <button class="btn-receta" onclick="cambiarReceta(3)">[04] BAZUKA RÁPIDA</button>
+    <div class="menu-modulos">
+        <button class="btn-modulo activo" onclick="cambiarModulo(0)">[01] EMISIÓN GENERAL</button>
+        <button class="btn-modulo" onclick="cambiarModulo(1)">[02] DIRECCIONAR</button>
+        <button class="btn-modulo" onclick="cambiarModulo(2)">[03] LENGUAJE "L"</button>
+        <button class="btn-modulo" onclick="cambiarModulo(3)">[04] BAZUKA RÁPIDA</button>
     </div>
 
-    <div id="pantalla-juego">
+    <div id="pantalla-interfaz">
         <div class="instruccion-texto" id="texto-instruccion"></div>
         
         <div class="area-interaccion">
@@ -154,7 +154,7 @@
 </div>
 
 <script>
-    const recetas = [
+    const modulos = [
         {
             instruccion: "Sacuda las orejas fuertemente. Retenga la electricidad. Sostenga, espere el momento. Baje su cabeza. Intente mirar el horizonte con sus ojos, Coloquelos arriba en su parte blanca.",
             accion: "Cargar Energía",
@@ -177,7 +177,7 @@
         }
     ];
 
-    let recetaActual = 0;
+    let moduloActual = 0;
     let datos = { progreso: 0, clicsBazuka: 0 };
     const palabrasRizoma = ["conexión", "enchufe", "vínculo", "ensamble", "nexo", "acoplamiento", "electricidad", "enganche"];
 
@@ -187,9 +187,9 @@
     const wrapperBarra = document.getElementById('wrapper-barra');
     const logSistema = document.getElementById('log-sistema');
 
-    function cambiarReceta(index) {
-        recetaActual = index;
-        document.querySelectorAll('.btn-receta').forEach((btn, i) => {
+    function cambiarModulo(index) {
+        moduloActual = index;
+        document.querySelectorAll('.btn-modulo').forEach((btn, i) => {
             btn.classList.toggle('activo', i === index);
         });
         resetearEstado();
@@ -205,11 +205,11 @@
     }
 
     function actualizarInterfaz() {
-        const r = recetas[recetaActual];
-        txtInstruccion.innerText = r.instruccion;
-        btnEjecutar.innerText = r.accion;
+        const m = modulos[moduloActual];
+        txtInstruccion.innerText = m.instruccion;
+        btnEjecutar.innerText = m.accion;
 
-        if (r.tipo === 'progreso' || r.tipo === 'bazuka') {
+        if (m.tipo === 'progreso' || m.tipo === 'bazuka') {
             wrapperBarra.style.display = 'block';
         } else {
             wrapperBarra.style.display = 'none';
@@ -217,10 +217,10 @@
     }
 
     btnEjecutar.addEventListener('click', () => {
-        const r = recetas[recetaActual];
+        const m = modulos[moduloActual];
         let pAleatoria = palabrasRizoma[Math.floor(Math.random() * palabrasRizoma.length)];
 
-        if (r.tipo === 'progreso') {
+        if (m.tipo === 'progreso') {
             if (datos.progreso < 100) {
                 datos.progreso += 20;
                 barraProgreso.style.width = datos.progreso + '%';
@@ -233,15 +233,15 @@
                 finalizarAccion();
             }
         } 
-        else if (r.tipo === 'click') {
+        else if (m.tipo === 'click') {
             logSistema.innerText = "Emitiendo... Con la práctica se sabrá convertir en un lanzador oficial de rayitos.";
             finalizarAccion();
         } 
-        else if (r.tipo === 'input') {
+        else if (m.tipo === 'input') {
             logSistema.innerText = "LLLLLLLLLL... Transmisión de voz alta enviada al canal mental.";
             finalizarAccion();
         } 
-        else if (r.tipo === 'bazuka') {
+        else if (m.tipo === 'bazuka') {
             datos.clicsBazuka++;
             if (datos.clicsBazuka <= 5) {
                 barraProgreso.style.width = (datos.clicsBazuka * 20) + '%';
