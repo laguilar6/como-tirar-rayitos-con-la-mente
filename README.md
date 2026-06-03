@@ -3,29 +3,29 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/deployment-GitHub%20Pages-brightgreen.svg)](https://pages.github.com/)
 
-Este repositorio contiene una máquina de escritura y un dispositivo psicofísico online basado en la obra homónima de la artista [**Romina Casile**](https://cargocollective.com/comocoreografiaruntexto).
+Este repositorio contiene una máquina de escritura y un dispositivo psicofísico online basado en la obra de la artista [**Romina Casile**](https://cargocollective.com/comocoreografiaruntexto) "¿cómo coreografiar un texto colectivamente".
 
 Siguiendo los lineamientos de Kenneth Goldsmith en *Escritura no-creativa: gestionando el lenguaje en la era digital*, gestionamos y desplazamos el texto original de Casile y compañía hacia un entorno de código abierto, transformando sus preguntas e instrucciones en un programa web ejecutable de libre acceso. Todo (o casi) el texto y las lógicas presentadas pertenecen a la documentación original de Casile y lxs participantes de su rizoma infinito eléctrico.
 
 ---
 
-## Arquitectura del Sistema
+## Arquitectura del sistema
 
-### Red Infinita de Conexión
+### Red infinita de conexión
 Dispositivo diseñado para el intercambio de rayitos mentales. El sistema opera bajo la premisa de que **el rayito se manda y se recibe**. Seguro son como fuegos artificiales, pero sin lo artificial. Circula la energía de un punto a otro, de un lado a otro. 
 
-### Puntos de Origen y Salida (End-points)
+### Puntos de origen y salida (End-points)
 Los rayitos se originan en la mente y siempre se pueden distribuir telepáticamente, aunque también podrían ser impulsados a través de:
 * Los ojos
 * La tapa de la cabeza
 * Desde el pecho
-* También hay algunos que salen por las manos.
+* También hay algunos que salen por las manos
 
-> **Definición del núcleo:** Qué es la mente? La mente es una bazuka de Rayitos.
+> **¿qué es la mente?** La mente es una bazuka de Rayitos.
 
 ---
 
-## Glosario de Categorías No Identificadas
+## Glosario de categorías no-identificadas
 
 El sistema clasifica los flujos de energía en una serie de tipos de datos variables:
 
@@ -44,21 +44,21 @@ No necesitás instalar ninguna dependencia externa en tu computadora. Para inici
 
 ### 1. Función general para emitir un rayito
 1. Sacuda las orejas fuertemente. Retenga la electricidad. Sostenga, espere el momento.
-2. Baje su cabeza. Intente mirar el horizonte con sus ojos, Coloquelos arriba en su parte blanca.
+2. Baje su cabeza. Intente mirar el horizonte con sus ojos, coloquelos arriba en su parte blanca.
 3. **Apunte y fuego:** Los rayitos serán impulsados y viajarán a través del tiempo y espacio. 
-> *Nota del protocolo: Ningún rayito impacta en el mismo lugar que otro rayito.*
+> *Nota: Ningún rayito impacta en el mismo lugar que otro rayito.*
 
-### 2. Función para direccionar un Rayo
-1. Acomode sus ojos lo más cerca posible uno del otro. Póngase bizco. Cuidado con el viento y con el estomudo.
+### 2. Función para direccionar un rayo
+1. Acomode sus ojos lo más cerca posible uno del otro. Póngase bizco. Cuidado con el viento y con el estornudo.
 2. Intencione. Sepa apuntar con precisión, para que rayo no se pierda o se equivoque de destinatario. Use su nariz y sus orejas.
 3. Expongase. No tenga miedo. No disimule.
 4. **Emita, lance:** *Con la práctica se sabrá convertir en un lanzador oficial de rayitos.*
 
-### 3. Protocolo para hablar con un Rayito
+### 3. Protocolo para hablar con un rayito
 1. Pronuncie de manera exagerada la letra L.
 2. Hable alto.
 
-### 4. Modo Rápido (La Bazuka de Rayitos)
+### 4. Modo rápido (La Bazuka de rayitos)
 Ejecutar en bucle continuo las siguientes líneas de comandos:
 ```bash
 mascar y lanzar rayitos
@@ -70,14 +70,14 @@ fiu ----
 fiu--------------------
 ```
 
-### 5. Despliegue en entorno de producción (Interfaz Online)
-Para ejecutar la aplicación de forma interactiva y simular las lógicas del rizoma eléctrico tanto en entornos de escritorio como en dispositivos móviles, acceda a la siguiente URL:
+### 5. Despliegue en entorno de producción (Interfaz online)
+Para ejecutar la aplicación de forma interactiva y simular las lógicas del rizoma eléctrico infinito tanto en entornos de escritorio como en dispositivos móviles, acceda a la siguiente URL
 --> [MÁQUINA DE RAYITOS](https://laguilar6.github.io/como-tirar-rayitos-con-la-mente/)
 
 > [!WARNING]  
 > ATENCIÓN: ENFOCAR LA MENTE HACIA UN SOLO PUNTO ES DE SUMA IMPORTANCIA.
 
-## Depuración y Errores Conocidos (Interferencias)
+## Depuración y errores conocidos (Interferencias)
 Para garantizar que el rayito pueda viajar libremente, sin interferencias ni desvíos, el entorno de ejecución debe estar libre de elementos aislantes:
 
 * Se recomienda retirar las tiritas de caucho en los autos.
